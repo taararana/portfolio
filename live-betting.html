@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Betting Vision - Taara Rana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: 
+                linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(147, 197, 253, 0.05) 25%, rgba(191, 219, 254, 0.03) 50%, rgba(59, 130, 246, 0.02) 100%),
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(147, 197, 253, 0.06) 0%, transparent 50%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(59, 130, 246, 0.005) 2px,
+                    rgba(59, 130, 246, 0.005) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(147, 197, 253, 0.008) 2px,
+                    rgba(147, 197, 253, 0.008) 4px
+                ),
+                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 100%);
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(59, 130, 246, 0.015) 8px,
+                    rgba(59, 130, 246, 0.015) 16px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 12px,
+                    rgba(147, 197, 253, 0.01) 12px,
+                    rgba(147, 197, 253, 0.01) 24px
+                );
+            opacity: 0.7;
+        }
+
+        .site-title {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            letter-spacing: -0.025em;
+            z-index: 10;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            color: #1e3a8a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+        }
+
+        .back-btn::before {
+            content: '←';
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover::before {
+            transform: translateX(-3px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            padding-top: 3rem;
+        }
+
+        .project-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .image-placeholder {
+            color: #3b82f6;
+            font-size: 4rem;
+        }
+
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid #3b82f6;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #1e3a8a;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e3a8a;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Navigation between projects */
+        .project-nav {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            flex: 1;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-link h4 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 1rem;
+            }
+
+            .site-title {
+                font-size: 1.5rem;
+                position: static;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .back-btn {
+                position: static;
+                margin: 0 auto 2rem;
+            }
+
+            .header-content {
+                padding-top: 1rem;
+            }
+
+            .project-meta {
+                gap: 1.5rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <section class="header">
+        <div class="site-title">Taara Rana</div>
+        <a href="index.html" class="back-btn">Back to Portfolio</a>
+        
+        <div class="header-content">
+            <h1 class="project-title">Live Betting Vision</h1>
+            <p class="project-subtitle">Crafting the future-state vision for a sportsbook's live betting experience</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">Co-led with Product Designer</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Timeline</div>
+                    <div class="meta-value">1.5 Months</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Status</div>
+                    <div class="meta-value">Approved & User Testing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Overview -->
+        <section class="content-section">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="section-content">
+                <p>Define a forward-looking approach and framework to integrating live betting stats that empower users make smarter, real-time betting decisions.</p>
+                
+                <p>Without a clear framework for live betting stats, we set out to redefine how our Sportsbook serves users in fast-paced moments. Using market research, user needs, and data providers, we explored and refined multiple concepts across different sports.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>The Challenge</h4>
+                <p>We had access to data, but no clear plan for what to show—or how to make it useful, visual, and on-brand. We needed a scalable system: something sport-agnostic, modular, and flexible to grow with the product.</p>
+            </div>
+        </section>
+
+        <!-- The Problem -->
+        <section class="content-section">
+            <h2 class="section-title">The Problem</h2>
+            <div class="section-content">
+                <p><strong>Users were turning to third-party apps for live stats, creating a fragmented experience.</strong> Our users consistently voiced their desire in interviews to consolidate functionalities into one preferred app, specifically our VIP users.</p>
+                
+                <p><strong>Competitors were starting to integrate in-app stats, and we needed to catch up.</strong> There was a broader industry trend towards prioritizing robust decision support and comprehensive statistics to empower users in their betting choices.</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-placeholder">📊</div>
+                <!-- Add actual competitor analysis images here -->
+            </div>
+        </section>
+
+        <!-- Discovery & Research -->
+        <section class="content-section">
+            <h2 class="section-title">Discovery & Research</h2>
+            <div class="section-content">
+                <p><strong>Competitor & Market Audits:</strong> Analyzed competitors (Fanduel, DK, Fanatics) & sports data platforms (Next Gen, ESPN) to understand their live/live betting experiences, statistics provided, data presentation, and how they build confidence for bettors.</p>
+                
+                <p><strong>Data Analysis & Selection:</strong> Mapped available data from external (Sportsradar, GTG) & internal providers (BI Insights). Identified which external modules could be visually adapted to align with our current design language and key data points that empower confident decision-making during high-pressure live betting.</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-placeholder">🔍</div>
+                <!-- Add research findings images here -->
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="content-section">
+            <h2 class="section-title">Exploration & Iteration</h2>
+            <div class="section-content">
+                <p><strong>Wireframes - NFL:</strong> Started with wireframe explorations focusing on NFL as our primary sport, testing different layouts and information hierarchies for live betting scenarios.</p>
+                
+                <p>After stakeholder alignment on the highest-impact ideas, we brought them to life in a future-facing UI that reflects where we want the product to go.</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-placeholder">📝</div>
+                <!-- Add wireframe images here -->
+            </div>
+        </section>
+
+        <!-- Solution -->
+        <section class="content-section">
+            <h2 class="section-title">Future Vision UI</h2>
+            <div class="section-content">
+                <p>Designed a high-fidelity UI system for the selected modules, grounded in our future vision for the product's look, feel, and functionality.</p>
+                
+                <p>The solution focused on creating a unified experience that integrates seamlessly with our existing betting interface while providing the comprehensive statistics and real-time data our users were seeking from third-party applications.</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-placeholder">🎯</div>
+                <!-- Add final UI design images here -->
+            </div>
+        </section>
+
+        <!-- Impact -->
+        <section class="content-section">
+            <h2 class="section-title">Impact & Results</h2>
+            <div class="section-content">
+                <p><strong>Current Status:</strong> Approved by stakeholders and pending user testing to validate the design decisions and user experience improvements.</p>
+                
+                <p>The project successfully established a scalable framework for live betting statistics that can adapt across different sports while maintaining visual consistency and brand alignment. This foundation will guide future development and help consolidate user experience within our platform.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Key Questions Addressed</h4>
+                <p>How can we strategically leverage external data and modules to enhance our product and achieve our goals? How can we ensure visual consistency across modules for different sports while designing them to seamlessly evolve with our product?</p>
+            </div>
+        </section>
+
+        <!-- Reflection -->
+        <section class="content-section">
+            <h2 class="section-title">Reflection</h2>
+            <div class="section-content">
+                <p><strong>What did you learn about designing for ambiguity or long-term vision?</strong> This project taught me the importance of creating flexible design systems that can evolve while maintaining core principles and user value.</p>
+                
+                <p><strong>How you balance data provider constraints vs. user value:</strong> We learned to prioritize user needs while working within technical and business constraints, finding creative solutions that serve both.</p>
+                
+                <p><strong>How the project is influencing future work? What are the next steps?</strong> This framework is now being used as the foundation for live betting feature development, with user testing results informing our implementation roadmap.</p>
+            </div>
+
+            <div class="tags">
+                <span class="tag">Product Vision</span>
+                <span class="tag">User Research</span>
+                <span class="tag">Competitive Analysis</span>
+                <span class="tag">Data Integration</span>
+                <span class="tag">Design Systems</span>
+                <span class="tag">Live Betting</span>
+                <span class="tag">Sports Technology</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Navigation -->
+    <section class="project-nav">
+        <div class="nav-links">
+            <a href="artwork.html" class="nav-link">
+                <h4>← Previous Project</h4>
+                <p>Experiential Artwork</p>
+            </a>
+            <a href="responsible-gaming-history.html" class="nav-link">
+                <h4>Next Project →</h4>
+                <p>Responsible Gaming History Redesign</p>
+            </a>
+        </div>
+    </section>
+</body>
+</html>
