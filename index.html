@@ -18,18 +18,9 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Navigation - Hidden since we're removing the white bar */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            display: none;
         }
 
         .nav-container {
@@ -50,24 +41,24 @@
 
         .floating-nav {
             position: fixed;
-            top: 1.5rem;
+            top: 2rem;
             right: 2rem;
             z-index: 10;
             display: flex;
             gap: 2rem;
             list-style: none;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(20px);
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .floating-nav a {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
+            color: rgba(30, 58, 138, 0.9);
+            font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s ease;
             position: relative;
@@ -76,13 +67,25 @@
         }
 
         .floating-nav a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
+            color: #1e3a8a;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .site-title {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            letter-spacing: -0.025em;
+            z-index: 10;
         }
 
         /* Hero Section - Sleek Light Blue Theme */
         .hero {
             min-height: 70vh;
+            padding-top: 0;
             background: 
                 linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(147, 197, 253, 0.05) 25%, rgba(191, 219, 254, 0.03) 50%, rgba(59, 130, 246, 0.02) 100%),
                 radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
@@ -436,10 +439,6 @@
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0;
-            }
-            
             .floating-nav {
                 position: static;
                 top: auto;
@@ -450,9 +449,18 @@
                 margin-bottom: 2rem;
             }
             
+            .site-title {
+                position: static;
+                text-align: center;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+            
             .hero {
-                padding: 0 1rem;
+                padding: 2rem 1rem;
                 min-height: 60vh;
+                flex-direction: column;
+                justify-content: center;
             }
             
             .work-section {
@@ -470,19 +478,15 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Taara Rana</div>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="geometric-shape"></div>
         <div class="geometric-shape"></div>
         <div class="geometric-shape"></div>
         <div class="geometric-shape"></div>
+        
+        <!-- Site Title -->
+        <div class="site-title">Taara Rana</div>
         
         <!-- Floating Navigation -->
         <ul class="floating-nav">
