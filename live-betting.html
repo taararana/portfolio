@@ -307,6 +307,11 @@
                 padding: 2rem 1rem;
             }
 
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
             .nav-links {
                 flex-direction: column;
                 gap: 1rem;
@@ -327,15 +332,19 @@
             <div class="project-meta">
                 <div class="meta-item">
                     <div class="meta-label">Role</div>
-                    <div class="meta-value">Design Lead (Co-Led Initiative)</div>
+                    <div class="meta-value">UX/UI Designer</div>
                 </div>
                 <div class="meta-item">
                     <div class="meta-label">Timeline</div>
                     <div class="meta-value">1.5 Months</div>
                 </div>
                 <div class="meta-item">
-                    <div class="meta-label">Status</div>
-                    <div class="meta-value">Pending User Testing</div>
+                    <div class="meta-label">Team/Company</div>
+                    <div class="meta-value">BetMGM, Team of 2 Designers</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Platform</div>
+                    <div class="meta-value">Mobile</div>
                 </div>
             </div>
         </div>
@@ -346,13 +355,10 @@
         <!-- Overview -->
         <section class="content-section">
             <h2 class="section-title">Project Overview</h2>
-            <div class="section-content">                
-                <p>Without a clear framework for live betting stats, we set out to redefine how our Sportsbook serves users in fast-paced moments. Using market research, user needs, and data providers, we explored and refined multiple concepts across different sports.</p>
-            </div>
-
-            <div class="highlight-box">
-                <h4>The Challenge</h4>
-                <p>We had access to data, but no clear plan for what to show—or how to make it useful, visual, and on-brand. We needed a scalable system: something sport-agnostic, modular, and flexible to grow with the product.</p>
+            <div class="section-content">
+                <p>BetMGM's live betting experience lacked integrated statistics, forcing users to rely on third-party apps for real-time data. This fragmented experience was particularly frustrating for our VIP users who wanted everything in one place.</p>
+                
+                <p style="margin-top: 2rem;">Our goal was to define a forward-looking framework for integrating live betting stats that would empower users to make smarter, real-time betting decisions while staying within our app ecosystem.</p>
             </div>
         </section>
 
@@ -362,12 +368,43 @@
             <div class="section-content">
                 <p><strong>Users were turning to third-party apps for live stats, creating a fragmented experience.</strong> Our users consistently voiced their desire in interviews to consolidate functionalities into one preferred app, specifically our VIP users.</p>
                 
+                <div class="comparison-grid">
+                    <div class="comparison-item betmgm-screen">
+                        <div class="image-container">
+                            <div class="image-placeholder">📱</div>
+                            <!-- Replace with: <img src="images/betmgm-live-game.jpg" alt="BetMGM Live Game"> -->
+                        </div>
+                        <h4>Live MLB game on BetMGM</h4>
+                        <p class="subtext">Game score and possession</p>
+                    </div>
+                    <div class="comparison-item espn-screen">
+                        <div class="image-container">
+                            <div class="image-placeholder">📊</div>
+                            <!-- Replace with: <img src="images/espn-live-game.jpg" alt="ESPN Live Game"> -->
+                        </div>
+                        <h4>Live MLB game on ESPN</h4>
+                        <p class="subtext">Game score, possession, player stats, team stats, head to head data and more</p>
+                    </div>
+                </div>
+                
                 <p><strong>Competitors were starting to integrate in-app stats, and we needed to catch up.</strong> There was a broader industry trend towards prioritizing robust decision support and comprehensive statistics to empower users in their betting choices.</p>
-            </div>
-
-            <div class="image-container">
-                <div class="image-placeholder">📊</div>
-                <!-- Add actual competitor analysis images here -->
+                
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <div class="image-container">
+                            <div class="image-placeholder">🎯</div>
+                            <!-- Replace with: <img src="images/fanduel-live-stats.jpg" alt="Fanduel Live Stats"> -->
+                        </div>
+                        <h4>Live stats on Fanduel</h4>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="image-container">
+                            <div class="image-placeholder">🏆</div>
+                            <!-- Replace with: <img src="images/draftkings-live-stats.jpg" alt="Draftkings Live Stats"> -->
+                        </div>
+                        <h4>Live stats on Draftkings</h4>
+                    </div>
+                </div>
             </div>
         </section>
 
