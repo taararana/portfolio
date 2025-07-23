@@ -326,9 +326,68 @@
             margin-bottom: 0.5rem;
         }
 
-        .nav-link p {
-            color: #64748b;
-            font-size: 0.9rem;
+        /* Logo grid styling */
+        .logo-section {
+            margin: 2rem 0;
+        }
+
+        .logo-categories {
+            display: flex;
+            gap: 4rem;
+            justify-content: space-between;
+        }
+
+        .logo-category {
+            flex: 1;
+        }
+
+        .logo-category h4 {
+            color: #6b21a8;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .logo-grid {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 40px;
+            background: #f1f5f9;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b5cf6;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Problem section divider */
+        .problem-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(139, 92, 246, 0.3), transparent);
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .problem-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: #8b5cf6;
+            border-radius: 50%;
         }
 
         /* Responsive */
@@ -441,6 +500,9 @@
                     </div>
                 </div>
                 
+                <!-- Problem Divider -->
+                <div class="problem-divider"></div>
+                
                 <p><strong>Competitors were starting to integrate in-app stats, and we needed to catch up.</strong> There was a broader industry trend towards prioritizing robust decision support and comprehensive statistics to empower users in their betting choices.</p>
                 
                 <div class="comparison-grid">
@@ -466,14 +528,52 @@
         <section class="content-section">
             <h2 class="section-title">Discovery & Research</h2>
             <div class="section-content">
-                <p><strong>Competitor & Market Audits:</strong> Analyzed competitors (Fanduel, DK, Fanatics) & sports data platforms (Next Gen, ESPN) to understand their live/live betting experiences, statistics provided, data presentation, and how they build confidence for bettors.</p>
+                <p><strong>Competitor & Market Audits:</strong> Analyzed competitors & sports data platforms to understand their live/live betting experiences, statistics provided, data presentation, and how they build confidence for bettors.</p>
                 
-                <p><strong>Data Analysis & Selection:</strong> Mapped available data from external (Sportsradar, GTG) & internal providers (BI Insights). Identified which external modules could be visually adapted to align with our current design language and key data points that empower confident decision-making during high-pressure live betting.</p>
-            </div>
-
-            <div class="image-container">
-                <div class="image-placeholder">🔍</div>
-                <!-- Add research findings images here -->
+                <div class="logo-section">
+                    <div class="logo-categories">
+                        <div class="logo-category">
+                            <h4>Sportsbook Competitors:</h4>
+                            <div class="logo-grid">
+                                <div class="logo-placeholder">FanDuel</div>
+                                <div class="logo-placeholder">DraftKings</div>
+                                <div class="logo-placeholder">Fanatics</div>
+                            </div>
+                        </div>
+                        
+                        <div class="logo-category">
+                            <h4>Sports Data Platforms:</h4>
+                            <div class="logo-grid">
+                                <div class="logo-placeholder">ESPN</div>
+                                <div class="logo-placeholder">Next Gen</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Divider -->
+                <div class="problem-divider"></div>
+                
+                <p><strong>Data Analysis & Selection:</strong> Mapped available data from external & internal providers. Identified which external modules could be visually adapted to align with our current design language and key data points that empower confident decision-making during high-pressure live betting.</p>
+                
+                <div class="logo-section">
+                    <div class="logo-categories">
+                        <div class="logo-category">
+                            <h4>External Providers:</h4>
+                            <div class="logo-grid">
+                                <div class="logo-placeholder">Provider 1</div>
+                                <div class="logo-placeholder">Provider 2</div>
+                            </div>
+                        </div>
+                        
+                        <div class="logo-category">
+                            <h4>Internal Provider:</h4>
+                            <div class="logo-grid">
+                                <div class="logo-placeholder">BI Insights</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
