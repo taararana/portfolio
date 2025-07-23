@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Betting Vision - Taara Rana</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
         * {
             margin: 0;
@@ -76,7 +75,7 @@
             left: 2rem;
             font-size: 1.8rem;
             font-weight: 700;
-            color: #1e3a8a;
+            color: #6b21a8;
             letter-spacing: -0.025em;
             z-index: 10;
         }
@@ -91,7 +90,7 @@
             padding: 0.75rem 1.5rem;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(20px);
-            color: #1e3a8a;
+            color: #6b21a8;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
@@ -126,7 +125,7 @@
         .project-title {
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 600;
-            color: #1e3a8a;
+            color: #6b21a8;
             margin-bottom: 1rem;
             line-height: 1.2;
         }
@@ -162,7 +161,7 @@
 
         .meta-value {
             font-size: 1rem;
-            color: #1e3a8a;
+            color: #6b21a8;
             font-weight: 600;
         }
 
@@ -180,7 +179,7 @@
         .section-title {
             font-size: 2rem;
             font-weight: 600;
-            color: #1e3a8a;
+            color: #6b21a8;
             margin-bottom: 1.5rem;
         }
 
@@ -209,15 +208,15 @@
         }
 
         .highlight-box {
-            background: rgba(59, 130, 246, 0.05);
-            border-left: 4px solid #3b82f6;
+            background: rgba(139, 92, 246, 0.05);
+            border-left: 4px solid #8b5cf6;
             padding: 2rem;
             border-radius: 8px;
             margin: 2rem 0;
         }
 
         .highlight-box h4 {
-            color: #1e3a8a;
+            color: #6b21a8;
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
@@ -230,12 +229,65 @@
         }
 
         .tag {
-            background: rgba(59, 130, 246, 0.1);
-            color: #1e3a8a;
+            background: rgba(139, 92, 246, 0.1);
+            color: #6b21a8;
             padding: 0.5rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
+        }
+
+        /* Comparison grid for images - Using reliable Flexbox */
+        .comparison-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .comparison-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 50%;
+        }
+
+        .comparison-item .image-container {
+            width: 100%;
+            max-width: 250px;
+            height: 500px;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-item h4 {
+            color: #6b21a8;
+            font-size: 0.95rem;
+            margin: 1rem 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .comparison-item .subtext {
+            color: #64748b;
+            font-size: 0.8rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .betmgm-screen .image-placeholder {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+        }
+
+        .espn-screen .image-placeholder {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #8b5cf6;
         }
 
         /* Navigation between projects */
@@ -270,7 +322,7 @@
         }
 
         .nav-link h4 {
-            color: #1e3a8a;
+            color: #6b21a8;
             margin-bottom: 0.5rem;
         }
 
