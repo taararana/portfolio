@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Betting Vision - Taara Rana</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Live Betting Vision — Taara Rana</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,36 +12,52 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-purple: #8b5cf6;
+            --deep-purple: #6b21a8;
+            --light-purple: #a855f7;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #fafafa;
+        }
+
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
             overflow-x: hidden;
+            scroll-behavior: smooth;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: scale(3);
+            background: var(--deep-purple);
         }
 
         /* Header */
         .header {
-            background: 
-                linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, rgba(168, 85, 247, 0.05) 25%, rgba(196, 181, 253, 0.03) 50%, rgba(139, 92, 246, 0.02) 100%),
-                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(139, 92, 246, 0.005) 2px,
-                    rgba(139, 92, 246, 0.005) 4px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(168, 85, 247, 0.008) 2px,
-                    rgba(168, 85, 247, 0.008) 4px
-                ),
-                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 100%);
-            padding: 4rem 2rem;
+            min-height: 60vh;
+            background: var(--bg-light);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            overflow: hidden;
         }
 
         .header::before {
@@ -52,56 +68,37 @@
             right: 0;
             bottom: 0;
             background: 
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 8px,
-                    rgba(139, 92, 246, 0.015) 8px,
-                    rgba(139, 92, 246, 0.015) 16px
-                ),
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent,
-                    transparent 12px,
-                    rgba(168, 85, 247, 0.01) 12px,
-                    rgba(168, 85, 247, 0.01) 24px
-                );
-            opacity: 0.7;
-        }
-
-        .site-title {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #6b21a8;
-            letter-spacing: -0.025em;
-            z-index: 10;
+                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
         }
 
         .back-btn {
-            position: absolute;
+            position: fixed;
             top: 2rem;
-            right: 2rem;
+            left: 2rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-            color: #6b21a8;
+            padding: 1rem 1.5rem;
+            background: white;
+            color: var(--deep-purple);
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            animation: slideInLeft 1s ease 0.5s forwards;
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-3px);
+            background: var(--deep-purple);
+            color: white;
+            transform: translateX(-5px);
         }
 
         .back-btn::before {
@@ -114,37 +111,38 @@
         }
 
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1000px;
             z-index: 2;
             position: relative;
-            text-align: center;
-            padding-top: 3rem;
         }
 
         .project-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 600;
-            color: #6b21a8;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: slideUp 1s ease 0.3s forwards;
         }
 
         .project-subtitle {
-            font-size: 1.2rem;
-            color: #475569;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.6s forwards;
         }
 
         .project-meta {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
+            gap: 4rem;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.9s forwards;
         }
 
         .meta-item {
@@ -152,131 +150,120 @@
         }
 
         .meta-label {
-            font-size: 0.9rem;
-            color: #64748b;
+            font-size: 0.8rem;
+            color: var(--text-light);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 1px;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .meta-value {
             font-size: 1rem;
-            color: #6b21a8;
-            font-weight: 600;
+            color: var(--deep-purple);
+            font-weight: 700;
         }
 
         /* Main Content */
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
         }
 
         .content-section {
-            margin-bottom: 4rem;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #6b21a8;
-            margin-bottom: 1.5rem;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
         }
 
         .section-content {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #475569;
+            color: var(--text-light);
+        }
+
+        .section-content p {
             margin-bottom: 2rem;
         }
 
-        .image-container {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2rem 0;
-            border: 1px solid rgba(139, 92, 246, 0.1);
+        .section-content strong {
+            color: var(--text-dark);
+            font-weight: 700;
         }
 
-        .image-placeholder {
-            color: #8b5cf6;
-            font-size: 4rem;
-        }
-
-        .highlight-box {
-            background: rgba(139, 92, 246, 0.05);
-            border-left: 4px solid #8b5cf6;
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-        }
-
-        .highlight-box h4 {
-            color: #6b21a8;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .tags {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .tag {
-            background: rgba(139, 92, 246, 0.1);
-            color: #6b21a8;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Comparison grid for images - Using reliable Flexbox */
+        /* Comparison Grid */
         .comparison-grid {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 2rem;
-            margin: 2rem 0;
-            width: 100%;
+            gap: 3rem;
+            margin: 3rem 0;
         }
 
         .comparison-item {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
-            max-width: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-item:hover {
+            transform: translateY(-5px);
         }
 
         .comparison-item .image-container {
             width: 100%;
             max-width: 250px;
             height: 500px;
-            margin-bottom: 1rem;
-            border-radius: 12px;
+            margin: 0 auto 1.5rem;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-item:hover .image-container {
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-purple);
         }
 
         .comparison-item h4 {
-            color: #6b21a8;
-            font-size: 0.95rem;
-            margin: 1rem 0 0.5rem 0;
-            font-weight: 600;
+            color: var(--deep-purple);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .comparison-item .subtext {
-            color: #64748b;
-            font-size: 0.8rem;
-            margin: 0;
+            color: var(--text-light);
+            font-size: 0.85rem;
             line-height: 1.4;
         }
 
@@ -287,48 +274,12 @@
 
         .espn-screen .image-placeholder {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #8b5cf6;
+            color: var(--primary-purple);
         }
 
-        /* Navigation between projects */
-        .project-nav {
-            background: #f8fafc;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .nav-link {
-            flex: 1;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-link:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .nav-link h4 {
-            color: #6b21a8;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Logo grid styling */
+        /* Logo Section */
         .logo-section {
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
 
         .logo-categories {
@@ -342,45 +293,92 @@
         }
 
         .logo-category h4 {
-            color: #6b21a8;
+            color: var(--deep-purple);
             font-size: 1rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .logo-grid {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .logo-placeholder {
-            width: 80px;
-            height: 40px;
-            background: #f1f5f9;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #8b5cf6;
+            padding: 0.75rem 1.25rem;
+            background: white;
+            border: 2px solid rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+            color: var(--deep-purple);
             font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-placeholder:hover {
+            border-color: var(--primary-purple);
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sub Headers */
+        .sub-header {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-purple);
+            margin: 3rem 0 1.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(168, 85, 247, 0.03));
+            border-left: 4px solid var(--primary-purple);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.02), transparent);
+            border-radius: 15px;
+        }
+
+        .highlight-box h4 {
+            color: var(--deep-purple);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-box p {
+            color: var(--text-dark);
             font-weight: 500;
         }
 
-        /* Sub-headers styling */
-        .sub-header {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #8b5cf6;
-            margin: 2rem 0 1rem 0;
-        }
+        /* Divider */
         .problem-divider {
             width: 100%;
             height: 1px;
             background: linear-gradient(to right, transparent, rgba(139, 92, 246, 0.3), transparent);
-            margin: 3rem 0;
+            margin: 4rem 0;
             position: relative;
         }
 
@@ -390,62 +388,200 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-            background: #8b5cf6;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-purple);
             border-radius: 50%;
         }
 
+        /* Image Container */
+        .image-container {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.15);
+        }
+
+        .image-container .image-placeholder {
+            font-size: 4rem;
+            color: var(--primary-purple);
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.05));
+            color: var(--deep-purple);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .tag:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Project Navigation */
+        .project-nav {
+            background: var(--text-dark);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            flex: 1;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--primary-purple);
+        }
+
+        .nav-link h4 {
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 3rem 1rem;
+        @media (max-width: 1024px) {
+            .comparison-grid {
+                flex-direction: column;
+                gap: 2rem;
             }
 
-            .site-title {
-                font-size: 1.5rem;
-                position: static;
-                text-align: center;
-                margin-bottom: 1rem;
+            .logo-categories {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                min-height: 50vh;
+                padding: 2rem 1rem;
             }
 
             .back-btn {
                 position: static;
-                margin: 0 auto 2rem;
-            }
-
-            .header-content {
-                padding-top: 1rem;
+                margin-bottom: 2rem;
             }
 
             .project-meta {
-                gap: 1.5rem;
+                gap: 2rem;
             }
 
             .main-content {
-                padding: 2rem 1rem;
+                padding: 4rem 1rem;
             }
 
-            .comparison-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .content-section {
+                margin-bottom: 4rem;
             }
 
             .nav-links {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 1.5rem;
+            }
+
+            .project-nav {
+                padding: 3rem 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
     <!-- Header -->
     <section class="header">
-        <div class="site-title">Taara Rana</div>
         <a href="index.html" class="back-btn">Back to Portfolio</a>
         
         <div class="header-content">
-            <h1 class="project-title">Live Betting Vision</h1>
+            <h1 class="project-title">LIVE BETTING VISION</h1>
             <p class="project-subtitle">Crafting the future-state vision for a sportsbook's live betting experience</p>
             
             <div class="project-meta">
@@ -473,7 +609,7 @@
     <main class="main-content">
         <!-- Overview -->
         <section class="content-section">
-            <h2 class="section-title">Project Overview</h2>
+            <h2 class="section-title">PROJECT OVERVIEW</h2>
             <div class="section-content">
                 <p>BetMGM's live betting experience lacked integrated statistics, forcing users to rely on third-party apps for real-time data. This fragmented experience was particularly frustrating for our VIP users who wanted everything in one place.</p>
                 
@@ -483,7 +619,7 @@
 
         <!-- The Problem -->
         <section class="content-section">
-            <h2 class="section-title">The Problem</h2>
+            <h2 class="section-title">THE PROBLEM</h2>
             <div class="section-content">
                 <p><strong>Users were turning to third-party apps for live stats, creating a fragmented experience.</strong> Our users consistently voiced their desire in interviews to consolidate functionalities into one preferred app, specifically our VIP users.</p>
                 
@@ -532,7 +668,7 @@
 
         <!-- Discovery & Research -->
         <section class="content-section">
-            <h2 class="section-title">Discovery & Research</h2>
+            <h2 class="section-title">DISCOVERY & RESEARCH</h2>
             <div class="section-content">
                 <p><strong>Competitor & Market Audits:</strong> Analyzed competitors & sports data platforms to understand their live/live betting experiences, statistics provided, data presentation, and how they build confidence for bettors.</p>
                 
@@ -585,7 +721,7 @@
 
         <!-- Design Process -->
         <section class="content-section">
-            <h2 class="section-title">Design Process</h2>
+            <h2 class="section-title">DESIGN PROCESS</h2>
             <div class="section-content">
                 <p><strong>Wireframes:</strong> Started with wireframe explorations focusing on different sports, testing various layouts and information hierarchies for live betting scenarios.</p>
                 
@@ -622,38 +758,38 @@
 
         <!-- Impact -->
         <section class="content-section">
-            <h2 class="section-title">Impact & Results</h2>
+            <h2 class="section-title">IMPACT & RESULTS</h2>
             <div class="section-content">
                 <p><strong>Current Status:</strong> Approved by stakeholders and pending user testing to validate the design decisions and user experience improvements.</p>
                 
                 <p>The project successfully established a scalable framework for live betting statistics that can adapt across different sports while maintaining visual consistency and brand alignment. This foundation will guide future development and help consolidate user experience within our platform.</p>
-            </div>
 
-            <div class="highlight-box">
-                <h4>Key Questions Addressed</h4>
-                <p>How can we strategically leverage external data and modules to enhance our product and achieve our goals? How can we ensure visual consistency across modules for different sports while designing them to seamlessly evolve with our product?</p>
+                <div class="highlight-box">
+                    <h4>Key Questions Addressed</h4>
+                    <p>How can we strategically leverage external data and modules to enhance our product and achieve our goals? How can we ensure visual consistency across modules for different sports while designing them to seamlessly evolve with our product?</p>
+                </div>
             </div>
         </section>
 
         <!-- Reflection -->
         <section class="content-section">
-            <h2 class="section-title">Reflection</h2>
+            <h2 class="section-title">REFLECTION</h2>
             <div class="section-content">
                 <p><strong>What did you learn about designing for ambiguity or long-term vision?</strong> This project taught me the importance of creating flexible design systems that can evolve while maintaining core principles and user value.</p>
                 
                 <p><strong>How you balance data provider constraints vs. user value:</strong> We learned to prioritize user needs while working within technical and business constraints, finding creative solutions that serve both.</p>
                 
                 <p><strong>How the project is influencing future work? What are the next steps?</strong> This framework is now being used as the foundation for live betting feature development, with user testing results informing our implementation roadmap.</p>
-            </div>
 
-            <div class="tags">
-                <span class="tag">Product Vision</span>
-                <span class="tag">User Research</span>
-                <span class="tag">Competitive Analysis</span>
-                <span class="tag">Data Integration</span>
-                <span class="tag">Design Systems</span>
-                <span class="tag">Live Betting</span>
-                <span class="tag">Sports Technology</span>
+                <div class="tags">
+                    <span class="tag">Product Vision</span>
+                    <span class="tag">User Research</span>
+                    <span class="tag">Competitive Analysis</span>
+                    <span class="tag">Data Integration</span>
+                    <span class="tag">Design Systems</span>
+                    <span class="tag">Live Betting</span>
+                    <span class="tag">Sports Technology</span>
+                </div>
             </div>
         </section>
     </main>
@@ -671,5 +807,65 @@
             </a>
         </div>
     </section>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .tag, .logo-placeholder');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
