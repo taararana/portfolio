@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taara Rana - Product Designer</title>
+    <title>Taara Rana — Product Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,595 +12,504 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-purple: #8b5cf6;
+            --deep-purple: #6b21a8;
+            --light-purple: #a855f7;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #fafafa;
+        }
+
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Navigation - Hidden since we're removing the white bar */
-        nav {
-            display: none;
+        /* Custom Cursor */
+        body {
+            cursor: none;
         }
 
-        .nav-container {
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: scale(3);
+            background: var(--deep-purple);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #7c3aed;
-            letter-spacing: -0.025em;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--deep-purple);
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: slideInLeft 1s ease 0.5s forwards;
         }
 
-        .floating-nav {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 10;
+        .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             list-style: none;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: slideInRight 1s ease 0.7s forwards;
         }
 
-        .floating-nav a {
+        .nav-menu a {
             text-decoration: none;
-            color: rgba(107, 33, 168, 0.9);
+            color: var(--text-dark);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
             position: relative;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
         }
 
-        .floating-nav a:hover {
-            color: #6b21a8;
-            background: rgba(139, 92, 246, 0.3);
-        }
-
-        .site-title {
+        .nav-menu a::after {
+            content: '';
             position: absolute;
-            top: 2rem;
-            left: 2rem;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #8b5cf6;
-            letter-spacing: -0.025em;
-            z-index: 10;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            transition: width 0.3s ease;
         }
 
-        /* Hero Section - Sleek Light Blue Theme */
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
         .hero {
-            min-height: 70vh;
-            padding-top: 0;
-            background: 
-                linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, rgba(168, 85, 247, 0.05) 25%, rgba(196, 181, 253, 0.03) 50%, rgba(139, 92, 246, 0.02) 100%),
-                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(139, 92, 246, 0.005) 2px,
-                    rgba(139, 92, 246, 0.005) 4px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(168, 85, 247, 0.008) 2px,
-                    rgba(168, 85, 247, 0.008) 4px
-                ),
-                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 100%);
-            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            background: linear-gradient(135deg, #fafafa 0%, #f3f4f6 100%);
+            position: relative;
             padding: 0 2rem;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 8px,
-                    rgba(139, 92, 246, 0.015) 8px,
-                    rgba(139, 92, 246, 0.015) 16px
-                ),
-                repeating-linear-gradient(
-                    -45deg,
-                    transparent,
-                    transparent 12px,
-                    rgba(168, 85, 247, 0.01) 12px,
-                    rgba(168, 85, 247, 0.01) 24px
-                );
-            opacity: 0.7;
         }
 
         .hero-content {
-            max-width: 800px;
-            z-index: 2;
-            position: relative;
-            animation: fadeInUp 1s ease-out;
+            max-width: 1000px;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 600;
-            color: #6b21a8;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            letter-spacing: -0.025em;
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            overflow: hidden;
         }
 
-        .hero .tagline {
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
-            color: #475569;
+        .hero-title .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: slideUp 1s ease forwards;
+        }
+
+        .hero-title .line:nth-child(1) { animation-delay: 0.1s; }
+        .hero-title .line:nth-child(2) { animation-delay: 0.3s; color: var(--primary-purple); }
+        .hero-title .line:nth-child(3) { animation-delay: 0.5s; }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-light);
             margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.8s forwards;
             font-weight: 400;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: #8b5cf6;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
-        }
-
-        .cta-button:hover {
-            background: #7c3aed;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px 0 rgba(139, 92, 246, 0.4);
-        }
-
-        .cta-button::after {
-            content: '↓';
-            transition: transform 0.3s ease;
-        }
-
-        .cta-button:hover::after {
-            transform: translateY(2px);
-        }
-
-        /* Floating geometric shapes */
-        .geometric-shape {
+        .scroll-indicator {
             position: absolute;
-            border-radius: 20px;
-            background: rgba(139, 92, 246, 0.1);
-            animation: float 8s ease-in-out infinite;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeIn 1s ease 1.2s forwards;
         }
 
-        .geometric-shape:nth-child(1) {
-            width: 120px;
-            height: 120px;
-            top: 15%;
-            left: 8%;
-            animation-delay: 0s;
-            border-radius: 50%;
-            background: rgba(168, 85, 247, 0.2);
-        }
-
-        .geometric-shape:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            top: 70%;
-            right: 10%;
-            animation-delay: 3s;
-            transform: rotate(45deg);
-        }
-
-        .geometric-shape:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            top: 25%;
-            right: 20%;
-            animation-delay: 6s;
-            border-radius: 50%;
-            background: rgba(196, 181, 253, 0.3);
-        }
-
-        .geometric-shape:nth-child(4) {
-            width: 60px;
-            height: 60px;
-            bottom: 30%;
-            left: 15%;
-            animation-delay: 2s;
-            background: rgba(139, 92, 246, 0.15);
+        .scroll-arrow {
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+            animation: bounce 2s infinite;
         }
 
         /* Work Section */
         .work-section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 8rem 0;
             background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            padding: 0 2rem;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #6b21a8;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--text-dark);
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         .section-subtitle {
-            text-align: center;
             font-size: 1.1rem;
-            color: #64748b;
-            margin-bottom: 4rem;
+            color: var(--text-light);
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
-        .work-grid {
+        /* Project Grid */
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project {
+            margin-bottom: 12rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .project.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project:nth-child(even) .project-content {
+            order: 2;
+        }
+
+        .project:nth-child(even) .project-visual {
+            order: 1;
+        }
+
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
         }
 
-        .work-item {
-            background: white;
+        .project-visual {
+            position: relative;
+            height: 500px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            border: 1px solid rgba(139, 92, 246, 0.05);
+            cursor: pointer;
+            transition: all 0.5s ease;
         }
 
-        .work-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #8b5cf6, #a855f7);
-            transition: left 0.4s ease;
-            z-index: 2;
+        .project-visual:hover {
+            transform: scale(1.02);
         }
 
-        .work-item:hover::before {
-            left: 0;
-        }
-
-        .work-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
-        }
-
-        .work-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .work-image img {
+        .project-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .work-item:hover .work-image img {
-            transform: scale(1.05);
-        }
-
-        .work-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(139, 92, 246, 0.1);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .work-item:hover .work-image::after {
-            opacity: 1;
-        }
-
-        .work-content {
-            padding: 2.5rem;
-        }
-
-        .work-item h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #6b21a8;
-        }
-
-        .work-item p {
-            color: #64748b;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .see-work-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.75rem;
-            background: #f3f4f6;
-            color: #8b5cf6;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-        }
-
-        .see-work-btn:hover {
-            background: #8b5cf6;
-            color: white;
-            transform: translateX(3px);
-        }
-
-        .see-work-btn::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-
-        .see-work-btn:hover::after {
-            transform: translateX(3px);
-        }
-
-        /* Image placeholder styling */
-        .image-placeholder {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            color: #8b5cf6;
-            font-size: 3rem;
-            width: 100%;
-            height: 100%;
+            font-size: 4rem;
+            color: var(--primary-purple);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .project-visual:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.8));
+            opacity: 0;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-visual:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .view-project {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .project-visual:hover .view-project {
+            transform: translateY(0);
+        }
+
+        .project-content {
+            padding: 2rem 0;
+        }
+
+        .project-number {
+            font-size: 0.9rem;
+            color: var(--primary-purple);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--deep-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         /* About Section */
         .about-section {
-            padding: 6rem 2rem;
-            background: #f8fafc;
+            background: var(--bg-light);
+            padding: 8rem 2rem;
+            text-align: center;
         }
 
         .about-container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            align-items: center;
         }
 
         .about-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #6b21a8;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--text-dark);
             margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
 
         .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #475569;
-            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 4rem;
         }
 
         .about-text p {
             margin-bottom: 1.5rem;
         }
 
-        .skills-grid {
+        .skills-showcase {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
-        .skill-category h4 {
-            color: #6b21a8;
+        .skill-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .skill-item h4 {
+            color: var(--deep-purple);
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        .skill-category ul {
+        .skill-item ul {
             list-style: none;
         }
 
-        .skill-category li {
-            color: #64748b;
+        .skill-item li {
+            color: var(--text-light);
             margin-bottom: 0.5rem;
             font-size: 0.95rem;
         }
 
-        .about-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .about-image .image-placeholder {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: #8b5cf6;
-        }
-
         /* Contact Section */
         .contact-section {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
+            background: var(--text-dark);
+            color: white;
+            padding: 8rem 2rem;
             text-align: center;
         }
 
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .contact-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #6b21a8;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
 
         .contact-subtitle {
-            font-size: 1.1rem;
-            color: #64748b;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.2rem;
+            color: #999;
+            margin-bottom: 4rem;
+            line-height: 1.6;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            text-align: left;
-        }
-
-        .contact-info {
+        .contact-links {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: #f8fafc;
-            border-radius: 12px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
         }
 
-        .contact-details h4 {
-            color: #6b21a8;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-details a {
-            color: #8b5cf6;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact-details a:hover {
-            color: #7c3aed;
-        }
-
-        .contact-form {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(139, 92, 246, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: #8b5cf6;
+        .contact-link {
             color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            text-decoration: none;
+            font-size: 1.1rem;
             font-weight: 600;
-            cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
 
-        .submit-btn:hover {
-            background: #7c3aed;
-            transform: translateY(-2px);
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-purple);
+            transition: width 0.3s ease;
+        }
+
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        .resume-cta {
+            display: inline-block;
+            padding: 1.5rem 3rem;
+            background: var(--primary-purple);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .resume-cta:hover {
+            background: var(--light-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
         }
 
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(100%);
             }
             to {
                 opacity: 1;
@@ -607,289 +517,400 @@
             }
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
         @keyframes float {
             0%, 100% {
                 transform: translateY(0px) rotate(0deg);
             }
-            33% {
+            50% {
                 transform: translateY(-20px) rotate(5deg);
             }
-            66% {
-                transform: translateY(10px) rotate(-3deg);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-container {
+            .project-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
 
-            .about-image {
-                order: -1;
+            .project:nth-child(even) .project-content,
+            .project:nth-child(even) .project-visual {
+                order: initial;
             }
 
-            .contact-grid {
+            .skills-showcase {
                 grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
             }
         }
 
         @media (max-width: 768px) {
-            .floating-nav {
-                position: static;
-                top: auto;
-                right: auto;
-                gap: 1.5rem;
-                padding: 0.75rem 1.5rem;
-                margin-top: 1rem;
-                margin-bottom: 2rem;
+            .nav {
+                padding: 1rem;
             }
-            
-            .site-title {
-                position: static;
-                text-align: center;
-                margin-bottom: 1rem;
-                font-size: 1.5rem;
-            }
-            
-            .hero {
-                padding: 2rem 1rem;
-                min-height: 60vh;
-                flex-direction: column;
-                justify-content: center;
-            }
-            
-            .work-section {
-                padding: 4rem 1rem;
-            }
-            
-            .work-grid {
+
+            .nav-menu {
                 gap: 2rem;
             }
 
-            .geometric-shape {
-                display: none;
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .project {
+                margin-bottom: 6rem;
+            }
+
+            .project-visual {
+                height: 300px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1.5rem;
             }
 
             .about-section,
             .contact-section {
                 padding: 4rem 1rem;
             }
+        }
 
-            .about-image .image-placeholder {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
-            }
+        /* Background Elements */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.03);
+            animation: float 15s ease-in-out infinite;
+        }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+        .bg-shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
 
-            .contact-container {
-                text-align: center;
-            }
+        .bg-shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: -5%;
+            animation-delay: 5s;
+        }
 
-            .contact-grid {
-                text-align: left;
-            }
+        .bg-shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">TAARA RANA</div>
+        <ul class="nav-menu">
+            <li><a href="#work">WORK</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
-        <div class="geometric-shape"></div>
-        <div class="geometric-shape"></div>
-        <div class="geometric-shape"></div>
-        <div class="geometric-shape"></div>
-        
-        <!-- Site Title -->
-        <div class="site-title">Taara Rana</div>
-        
-        <!-- Floating Navigation -->
-        <ul class="floating-nav">
-            <li><a href="#work">My Work</a></li>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
+        <div class="bg-shape"></div>
         
         <div class="hero-content">
-            <h1>Turning complex problems into clear, human-centered solutions</h1>
-            <p class="tagline">Currently designing winning experiences for BetMGM's Sportsbook product.</p>
-            <a href="#work" class="cta-button">View My Work</a>
+            <h1 class="hero-title">
+                <span class="line">COMPLEX</span>
+                <span class="line">PROBLEMS;</span>
+                <span class="line">CLEAR SOLUTIONS</span>
+            </h1>
+            <p class="hero-subtitle">
+                Currently designing winning experiences for BetMGM's Sportsbook product.
+            </p>
+        </div>
+        
+        <div class="scroll-indicator">
+            SCROLL TO EXPLORE
+            <span class="scroll-arrow">↓</span>
         </div>
     </section>
 
     <!-- Work Section -->
     <section class="work-section" id="work">
-        <div class="work-grid">
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">📱</div>
-                    <!-- Replace with: <img src="path-to-your-live-betting-image.jpg" alt="Live Betting Vision"> -->
-                </div>
-                <div class="work-content">
-                    <h3>Live Betting Vision</h3>
-                    <p>Crafted the future-state vision for a sportsbook's live betting experience, defining how the product will expand and adapt to evolving market and user needs.</p>
-                    <a href="live-betting.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+        <div class="section-header">
+            <h2 class="section-title">SELECTED WORK</h2>
+            <p class="section-subtitle">
+                A collection of projects showcasing my approach to solving complex design challenges
+            </p>
+        </div>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">🎯</div>
-                    <!-- Replace with: <img src="path-to-your-responsible-gaming-image.jpg" alt="Responsible Gaming History Redesign"> -->
+        <div class="projects-container">
+            <!-- Project 1 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">📱</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">01</div>
+                        <h3 class="project-title">Live Betting Vision</h3>
+                        <p class="project-description">
+                            Crafted the future-state vision for a sportsbook's live betting experience, defining how the product will expand and adapt to evolving market and user needs.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Product Vision</span>
+                            <span class="tag">UX Research</span>
+                            <span class="tag">Mobile Design</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Responsible Gaming History Redesign</h3>
-                    <p>Modernized the Responsible Gaming History page to enhance usability and consistency, creating a seamless experience that aligns with the product's design language.</p>
-                    <a href="responsible-gaming-history.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">🎪</div>
-                    <!-- Replace with: <img src="path-to-your-lobby-banner-image.jpg" alt="Lobby Banner Component"> -->
+            <!-- Project 2 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">🎯</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">02</div>
+                        <h3 class="project-title">Responsible Gaming History Redesign</h3>
+                        <p class="project-description">
+                            Modernized the Responsible Gaming History page to enhance usability and consistency, creating a seamless experience that aligns with the product's design language.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">UI/UX Design</span>
+                            <span class="tag">Design Systems</span>
+                            <span class="tag">User Experience</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Lobby Banner Component Improvement</h3>
-                    <p>Transformed the lobby banner into a dynamic component, addressing limitations by designing for multiple use cases and ensuring long-term flexibility.</p>
-                    <a href="lobby-banner.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">📊</div>
-                    <!-- Replace with: <img src="path-to-your-activity-tracker-image.jpg" alt="Activity Tracker"> -->
+            <!-- Project 3 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">🎪</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">03</div>
+                        <h3 class="project-title">Lobby Banner Component</h3>
+                        <p class="project-description">
+                            Transformed the lobby banner into a dynamic component, addressing limitations by designing for multiple use cases and ensuring long-term flexibility.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Component Design</span>
+                            <span class="tag">Design Systems</span>
+                            <span class="tag">Scalability</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Responsible Gaming Activity Tracker</h3>
-                    <p>Designed and implemented an activity tracker on the Responsible Gaming page to help users monitor their behavior and stay within healthy gambling limits.</p>
-                    <a href="activity-tracker.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">🏆</div>
-                    <!-- Replace with: <img src="path-to-your-contest-redesign-image.jpg" alt="Contest Feature Redesign"> -->
+            <!-- Project 4 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">📊</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">04</div>
+                        <h3 class="project-title">Responsible Gaming Activity Tracker</h3>
+                        <p class="project-description">
+                            Designed and implemented an activity tracker on the Responsible Gaming page to help users monitor their behavior and stay within healthy gambling limits.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Data Visualization</span>
+                            <span class="tag">Behavioral Design</span>
+                            <span class="tag">User Safety</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Contest Feature Redesign for Kiosks</h3>
-                    <p>Led the redesign of the contest feature on sports betting kiosks to create a more modern, user-friendly flow.</p>
-                    <a href="contest-redesign.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">⚡</div>
-                    <!-- Replace with: <img src="path-to-your-quick-links-image.jpg" alt="Quick Links Optimization"> -->
+            <!-- Project 5 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">🏆</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">05</div>
+                        <h3 class="project-title">Contest Feature Redesign</h3>
+                        <p class="project-description">
+                            Led the redesign of the contest feature on sports betting kiosks to create a more modern, user-friendly flow.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Kiosk Design</span>
+                            <span class="tag">User Flow</span>
+                            <span class="tag">Interface Design</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Quick Links Optimization</h3>
-                    <p>Optimized the quick link component by reworking the UI and creating a new flow that opens a sheet for seamless bet placement, eliminating disruptive page transitions.</p>
-                    <a href="quick-links.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">🎨</div>
-                    <!-- Replace with: <img src="path-to-your-aasraa-trust-image.jpg" alt="Aasraa Trust Logo"> -->
+            <!-- Project 6 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">⚡</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">06</div>
+                        <h3 class="project-title">Quick Links Optimization</h3>
+                        <p class="project-description">
+                            Optimized the quick link component by reworking the UI and creating a new flow that opens a sheet for seamless bet placement.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">UX Optimization</span>
+                            <span class="tag">Interaction Design</span>
+                            <span class="tag">User Flow</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Aasraa Trust</h3>
-                    <p>Redesigned the logo to reflect modern design trends and ensure seamless integration with upcoming website updates.</p>
-                    <a href="aasraa-trust.html" class="see-work-btn">SEE WORK</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="work-item fade-in">
-                <div class="work-image">
-                    <div class="image-placeholder">🖼️</div>
-                    <!-- Replace with: <img src="path-to-your-artwork-image.jpg" alt="Experiential Artwork"> -->
+            <!-- Project 7 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">🎨</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">07</div>
+                        <h3 class="project-title">Aasraa Trust</h3>
+                        <p class="project-description">
+                            Redesigned the logo to reflect modern design trends and ensure seamless integration with upcoming website updates.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Brand Identity</span>
+                            <span class="tag">Logo Design</span>
+                            <span class="tag">Visual Identity</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-content">
-                    <h3>Experiential Artwork</h3>
-                    <p>Artwork I have created using different mediums including painting (acrylic), photography, pencil drawings and more.</p>
-                    <a href="artwork.html" class="see-work-btn">SEE WORK</a>
+            </article>
+
+            <!-- Project 8 -->
+            <article class="project">
+                <div class="project-grid">
+                    <div class="project-visual">
+                        <div class="project-image">🖼️</div>
+                        <div class="project-overlay">
+                            <span class="view-project">View Project</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-number">08</div>
+                        <h3 class="project-title">Experiential Artwork</h3>
+                        <p class="project-description">
+                            Artwork I have created using different mediums including painting (acrylic), photography, pencil drawings and more.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Fine Art</span>
+                            <span class="tag">Photography</span>
+                            <span class="tag">Mixed Media</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="about-container">
-            <div class="about-content">
-                <h2 class="about-title">About Me</h2>
-                <div class="about-text">
-                    <p>I'm a product designer passionate about creating intuitive, user-centered experiences that solve complex problems. Currently at BetMGM, I focus on designing engaging sportsbook experiences that empower users to make confident decisions.</p>
-                    
-                    <p>My approach combines deep user research, systematic design thinking, and collaborative problem-solving to create products that truly serve user needs while achieving business goals.</p>
-                    
-                    <p>When I'm not designing, you'll find me exploring new creative mediums, from acrylic painting to photography, always seeking inspiration for my next project.</p>
-                </div>
+            <h2 class="about-title">ABOUT ME</h2>
+            <div class="about-text">
+                <p>I'm a product designer passionate about creating intuitive, user-centered experiences that solve complex problems. Currently at BetMGM, I focus on designing engaging sportsbook experiences that empower users to make confident decisions.</p>
                 
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Design</h4>
-                        <ul>
-                            <li>User Experience Design</li>
-                            <li>Product Strategy</li>
-                            <li>Design Systems</li>
-                            <li>Prototyping</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Research</h4>
-                        <ul>
-                            <li>User Interviews</li>
-                            <li>Competitive Analysis</li>
-                            <li>Usability Testing</li>
-                            <li>Data Analysis</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Tools</h4>
-                        <ul>
-                            <li>Figma</li>
-                            <li>Adobe Creative Suite</li>
-                            <li>Principle</li>
-                            <li>Miro</li>
-                        </ul>
-                    </div>
-                </div>
+                <p>My approach combines deep user research, systematic design thinking, and collaborative problem-solving to create products that truly serve user needs while achieving business goals.</p>
+                
+                <p>When I'm not designing, you'll find me exploring new creative mediums, from acrylic painting to photography, always seeking inspiration for my next project.</p>
             </div>
-            <div class="about-image">
-                <div class="image-placeholder">👩‍💻</div>
-                <!-- Replace with: <img src="path-to-your-photo.jpg" alt="Taara Rana"> -->
+            
+            <div class="skills-showcase">
+                <div class="skill-item">
+                    <h4>Design</h4>
+                    <ul>
+                        <li>User Experience Design</li>
+                        <li>Product Strategy</li>
+                        <li>Design Systems</li>
+                        <li>Prototyping</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h4>Research</h4>
+                    <ul>
+                        <li>User Interviews</li>
+                        <li>Competitive Analysis</li>
+                        <li>Usability Testing</li>
+                        <li>Data Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li>Figma</li>
+                        <li>Adobe Creative Suite</li>
+                        <li>Principle</li>
+                        <li>Miro</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -897,10 +918,32 @@
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
-            <h2 class="contact-title">Let's Connect</h2>
-            <p class="contact-subtitle">I'm always interested in discussing new opportunities, design challenges, or creative collaborations.</p>
+            <h2 class="contact-title">LET'S CONNECT</h2>
+            <p class="contact-subtitle">
+                I'm always interested in discussing new opportunities, design challenges, or creative collaborations.
+            </p>
             
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com" class="contact-link">EMAIL</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">LINKEDIN</a>
+                <a href="https://dribbble.com/yourprofile" target="_blank" class="contact-link">DRIBBBLE</a>
+            </div>
+            
+            <a href="path-to-your-resume.pdf" target="_blank" class="resume-cta">Download Resume</a>
+        </div>
+    </section>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        //
