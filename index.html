@@ -206,12 +206,15 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
         }
 
         .project {
-            margin-bottom: 12rem;
-            opacity: 0;
-            transform: translateY(50px);
+            margin-bottom: 4rem;
+            opacity: 1;
+            transform: translateY(0);
             transition: all 0.8s ease;
         }
 
@@ -220,28 +223,20 @@
             transform: translateY(0);
         }
 
-        .project:nth-child(even) .project-content {
-            order: 2;
-        }
-
-        .project:nth-child(even) .project-visual {
-            order: 1;
-        }
-
         .project-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-visual {
             position: relative;
-            height: 500px;
+            height: 300px;
             border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.5s ease;
+            margin-bottom: 2rem;
         }
 
         .project-visual:hover {
@@ -549,14 +544,9 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .project-grid {
+            .projects-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
-            }
-
-            .project:nth-child(even) .project-content,
-            .project:nth-child(even) .project-visual {
-                order: initial;
             }
 
             .skills-showcase {
@@ -579,11 +569,12 @@
             }
 
             .project {
-                margin-bottom: 6rem;
+                margin-bottom: 3rem;
             }
 
             .project-visual {
-                height: 300px;
+                height: 250px;
+                margin-bottom: 1.5rem;
             }
 
             .contact-links {
