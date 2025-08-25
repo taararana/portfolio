@@ -85,12 +85,12 @@
             list-style: none;
             opacity: 0;
             animation: slideInRight 1s ease 0.7s forwards;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 25px;
             padding: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .nav-menu li {
@@ -125,7 +125,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -134,7 +134,7 @@
                 radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.4) 0%, rgba(168, 85, 247, 0.3) 25%, rgba(196, 181, 253, 0.2) 50%, transparent 70%),
                 linear-gradient(135deg, #fafafa 0%, #f8fafc 100%);
             position: relative;
-            padding: 0 4rem;
+            padding: 8rem 4rem 0;
             overflow: hidden;
         }
 
@@ -178,19 +178,24 @@
             animation: slideUp 1s ease forwards;
         }
 
-        .hero-title .line:nth-child(1) { 
+        .hero-title .line.intro { 
             animation-delay: 0.1s; 
-            color: var(--text-dark);
             font-weight: 900;
         }
         .hero-title .line:nth-child(2) { 
             animation-delay: 0.3s; 
-            color: var(--text-dark);
             font-weight: 400;
         }
         .hero-title .line:nth-child(3) { 
             animation-delay: 0.5s; 
-            color: var(--text-dark);
+            font-weight: 400;
+        }
+        .hero-title .line:nth-child(4) { 
+            animation-delay: 0.7s; 
+            font-weight: 400;
+        }
+        .hero-title .line:nth-child(5) { 
+            animation-delay: 0.9s; 
             font-weight: 400;
         }
 
@@ -199,12 +204,27 @@
             font-weight: 400;
         }
 
+        .hero-title .highlight.bold {
+            font-weight: 900;
+        }
+
         .hero-subtitle {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: var(--text-light);
-            margin-bottom: 3rem;
+            margin-bottom: 0;
             opacity: 0;
             animation: fadeIn 1s ease 0.8s forwards;
+            font-weight: 400;
+        }
+
+        .hero-location {
+            position: absolute;
+            bottom: 24px;
+            right: 4rem;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-light);
+            opacity: 0;
+            animation: fadeIn 1s ease 1.0s forwards;
             font-weight: 400;
         }
 
@@ -617,7 +637,7 @@
             }
 
             .hero {
-                padding: 0 1rem;
+                padding: 6rem 1rem 0;
             }
 
             .project {
@@ -632,6 +652,11 @@
             .contact-links {
                 flex-direction: column;
                 gap: 1.5rem;
+            }
+
+            .hero-location {
+                right: 1rem;
+                bottom: 20px;
             }
 
             .about-section,
@@ -688,18 +713,19 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">
-                <span class="line">HI, I'M TAARA —</span>
-                <span class="line">I TURN COMPLEX PROBLEMS INTO</span>
-                <span class="line"><span class="highlight">SIMPLE, MEANINGFUL</span> EXPERIENCES.</span>
+                <span class="line intro">HI, I'M <span class="highlight bold">TAARA</span> —</span>
+                <span class="line">A PRODUCT DESIGNER</span>
+                <span class="line">WHO TRANSFORMS COMPLEX</span>
+                <span class="line">PROBLEMS INTO <span class="highlight">SIMPLE</span>,</span>
+                <span class="line"><span class="highlight">MEANINGFUL</span> DIGITAL EXPERIENCES.</span>
             </h1>
             <p class="hero-subtitle">
                 Currently designing winning experiences for BetMGM's Sportsbook product.
             </p>
         </div>
         
-        <div class="scroll-indicator">
-            SCROLL TO EXPLORE
-            <span class="scroll-arrow">↓</span>
+        <div class="hero-location">
+            Brooklyn, NY
         </div>
     </section>
 
@@ -1018,3 +1044,6 @@
                 nav.classList.remove('scrolled');
             }
         });
+    </script>
+</body>
+</html>
