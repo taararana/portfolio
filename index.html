@@ -28,28 +28,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Custom Cursor */
-        body {
-            cursor: none;
-        }
-
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-purple);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor.hover {
-            transform: scale(3);
-            background: var(--deep-purple);
-        }
-
         /* Navigation */
         .nav {
             position: fixed;
@@ -124,7 +102,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 80vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -183,18 +161,6 @@
         }
         .hero-title .line:nth-child(2) { 
             animation-delay: 0.3s; 
-            font-weight: 400;
-        }
-        .hero-title .line:nth-child(3) { 
-            animation-delay: 0.5s; 
-            font-weight: 400;
-        }
-        .hero-title .line:nth-child(4) { 
-            animation-delay: 0.7s; 
-            font-weight: 400;
-        }
-        .hero-title .line:nth-child(5) { 
-            animation-delay: 0.9s; 
             font-weight: 400;
         }
 
@@ -717,19 +683,14 @@
         <div class="hero-content">
             <h1 class="hero-title">
                 <span class="line intro">HI, I'M <span class="highlight bold">TAARA</span> —</span>
-                <span class="line">A PRODUCT DESIGNER</span>
-                <span class="line">WHO TRANSFORMS COMPLEX</span>
-                <span class="line">PROBLEMS INTO <span class="highlight">SIMPLE</span>,</span>
-                <span class="line"><span class="highlight">MEANINGFUL</span> DIGITAL EXPERIENCES.</span>
+                <span class="line">I TURN COMPLEXITY INTO <span class="highlight">CLARITY</span>.</span>
             </h1>
-            <p class="hero-subtitle">
-                Currently designing winning experiences for BetMGM's Sportsbook product.
-            </p>
-        </div>
-        
-        <div class="hero-location">
-            <span></span>
-            <span>Brooklyn, NY</span>
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6rem; margin-top: 8rem;">
+                <p class="hero-subtitle" style="margin-bottom: 0;">
+                    Currently designing winning experiences for BetMGM's Sportsbook product.
+                </p>
+                <span style="font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-light); opacity: 0; animation: fadeIn 1s ease 1.0s forwards;">📍 Brooklyn, NY</span>
+            </div>
         </div>
     </section>
 
@@ -992,11 +953,6 @@
     </section>
 
     <script>
-        // Cursor hover effects - REMOVED custom cursor
-        const hoverElements = document.querySelectorAll('a, button, .project-visual, .skill-item');
-        
-        // Removed cursor functionality
-
         // Scroll animations for projects
         const observerOptions = {
             threshold: 0.2,
