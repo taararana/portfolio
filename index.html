@@ -65,8 +65,7 @@
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            /* Removed white background - nav stays floating */
         }
 
         .logo {
@@ -220,7 +219,11 @@
         .hero-location {
             position: absolute;
             bottom: 24px;
+            left: 4rem;
             right: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
             font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: var(--text-light);
             opacity: 0;
@@ -655,8 +658,8 @@
             }
 
             .hero-location {
+                left: 1rem;
                 right: 1rem;
-                bottom: 20px;
             }
 
             .about-section,
@@ -725,7 +728,8 @@
         </div>
         
         <div class="hero-location">
-            Brooklyn, NY
+            <span></span>
+            <span>Brooklyn, NY</span>
         </div>
     </section>
 
